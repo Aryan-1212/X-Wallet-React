@@ -159,7 +159,7 @@ textarea.input-field {
     color: #fff;
 }
 
-.transfer-btn {
+.transfer-btn, .receive-btn {
     background: linear-gradient(90deg, #00A3B5 0%, #007A8A 100%);
 }
 

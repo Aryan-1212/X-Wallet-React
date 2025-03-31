@@ -24,6 +24,37 @@ document.addEventListener("DOMContentLoaded", function () {
     //     }
     // }
 
+    // qr
+document.getElementById("form-receive").addEventListener("click", () => {
+    const newAddress = localStorage.getItem("newAddress");
+    if (!newAddress) {
+        alert("No wallet address found in localStorage!");
+        return;
+    }
+
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${newAddress}`;
+    console.log(qrCodeUrl);
+    
+    const qrCodeImg = document.getElementById("qr-code");
+    qrCodeImg.src = qrCodeUrl;
+
+    const qrModal = document.getElementById("qr-modal");
+    qrModal.style.display = "block";
+});
+
+document.getElementById("close-modal").addEventListener("click", () => {
+    const qrModal = document.getElementById("qr-modal");
+    qrModal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+    const qrModal = document.getElementById("qr-modal");
+    if (event.target === qrModal) {
+        qrModal.style.display = "none";
+    }
+});
+// qr
+
     function updateProvider() {
         const selectedNetwork = networkSelect.value;
         if (selectedNetwork === "sepolia") {

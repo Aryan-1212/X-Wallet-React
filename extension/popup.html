@@ -1,19 +1,67 @@
-<!-- popup.html -->
+<!-- popup2.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Wallet</title>
     <link rel="stylesheet" href="./styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* QR Code Modal Styles */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr-modal-content {
+            background-color: #2E3B55;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            color: #E5E7EB;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .qr-modal-content img {
+            width: 250px;
+            height: 250px;
+            margin-top: 20px;
+        }
+
+        .close-btn {
+            color: #E5E7EB;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #ff4b4b;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1 id="heading">@X_Innovators</h1>
         </div>
-        
+
         <form class="form">
             <!-- added a select tag for the network -->
             <div class="field">
@@ -23,49 +71,32 @@
                     <option value="polygon">Polygon</option>
                 </select>
             </div>
-            
+
             <!-- added a select tag for the network -->
             <div class="field">
                 <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8-8-3.59 8-8-8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z" />
                 </svg>
-                <input
-                    type="number"
-                    class="input-field"
-                    placeholder="Amount (1-500)"
-                    id="amount"
-                    min="0.1"
-                    max="500"
-                    required
-                />
+                <input type="number" class="input-field" placeholder="Amount (1-500)" id="amount" min="0.1" max="500"
+                    required />
             </div>
 
             <div class="field" style="display: none;">
                 <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 11c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2v-2zm-8 0c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2v-2zm12-8H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H4V7h12v10z"/>
+                    <path
+                        d="M12 11c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2v-2zm-8 0c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2v-2zm12-8H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H4V7h12v10z" />
                 </svg>
-                <textarea 
-                    class="input-field"
-                    placeholder="Your wallet address"
-                    autocomplete="off"
-                    id="privateKey"
-                    cols="5"
-                    rows="1"
-                    required
-                ></textarea>
+                <textarea class="input-field" placeholder="Your wallet address" autocomplete="off" id="privateKey"
+                    cols="5" rows="1" required></textarea>
             </div>
 
             <div class="field">
                 <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
                 </svg>
-                <input
-                    type="text"
-                    class="input-field"
-                    placeholder="Receiver's wallet address"
-                    id="address"
-                    required
-                />
+                <input type="text" class="input-field" placeholder="Receiver's wallet address" id="address" required />
             </div>
 
             <div class="loader-container">
@@ -90,11 +121,16 @@
             <div class="btn-group">
                 <div class="mpin-section">
                     <label for="login-mpin">Enter MPIN to proceed:</label>
-                    <input type="password" id="login-mpin" required maxlength="4" pattern="\d{4}" placeholder="Enter 4-digit MPIN">
+                    <input type="password" id="login-mpin" required maxlength="4" pattern="\d{4}"
+                        placeholder="Enter 4-digit MPIN">
                 </div>
                 <button id="form" class="btn transfer-btn" type="button">
                     Transfer
                 </button>
+                <button id="form-receive" class="btn receive-btn" type="button">
+                    Receive
+                </button>
+
                 <button id="check_balance" class="btn balance-btn" type="button">
                     Check Balance
                 </button>
@@ -107,7 +143,17 @@
         </form>
     </div>
 
+    <!-- Add this modal container for the QR code -->
+    <div id="qr-modal" class="qr-modal">
+        <div class="qr-modal-content">
+            <span id="close-modal" class="close-btn">&times;</span>
+            <h2>Your Wallet Address QR Code</h2>
+            <img id="qr-code" src="" alt="QR Code" />
+        </div>
+    </div>
+
     <script src="./scripts/ethers.js"></script>
     <script src="./scripts/popup2.js"></script>
 </body>
+
 </html>
