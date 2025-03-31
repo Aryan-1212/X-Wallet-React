@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    /* color: #E5E7EB !important; */
 }
 
 html, body {
@@ -13,8 +14,11 @@ html, body {
     max-height: 600px;
     margin: 0;
     padding: 0;
-    background: #1F2A44;
-    color: #E5E7EB;
+    background: transparent !important;
+    /* overflow: hidden; */
+    /* background: #1F2A44; */
+    /* background: #E5E7EB; */
+    /* color: #121F3D; */
     /* overflow: hidden; Hide any overflow */
 }
 
@@ -24,6 +28,11 @@ html, body {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    background: #ffffff;
+    color: #121F3D;
+    border-radius: 10px;
+    border:none;
+
     gap: 1rem;
 }
 
@@ -80,7 +89,8 @@ background-color: #41a6c3;
     gap: 1rem;
     /* width: 340px; */
     padding: 1rem;
-    background: #2E3B55;
+    /* background: #adb3c1; */
+    background: rgba( 226, 208, 208, 0.3 );
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s ease-in-out;
@@ -260,7 +270,7 @@ body {
     background-color: #121F3D;
     color: #fff;
     font-family: 'Arial', sans-serif;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     margin: 0;
     padding: 0;
 }
@@ -325,9 +335,9 @@ body {
     width: 100%;
     padding: 12px;
     border-radius: 6px;
-    background-color: #2A3A5F;
+    /* background-color: #5a71a5b3; */
     border: 1px solid #374B71;
-    color: #fff;
+    color: #000000;
     box-sizing: border-box;
 }
 
@@ -351,10 +361,17 @@ body {
 
 /* Wallet Connect Specific Styles */
 .connect-wallet-section {
-    background-color: #2A3A5F;
+    /* background-color: #2a3a5f9a; */
+    border: none;
+    /* background-color: #dbdfe6; */
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
+    background: rgba( 226, 208, 208, 0.3 );
+    box-shadow: -1px -1px 32px 3px rgb(101 107 193 / 37%);
+    backdrop-filter: blur( 10.5px );
+    -webkit-backdrop-filter: blur( 10.5px );
+    border-radius: 10px;
 }
 
 .connect-wallet-section h2 {
