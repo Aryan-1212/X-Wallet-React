@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Wallet</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="connect-page">
+    <div class="container">
+        <div class="auth-header">
+            <h1>@X_INNOVATORS</h1>
+        </div>
+        
+        <div class="connect-wallet-section">
+            <h2>Connect Your Wallet</h2>
+            
+            <div class="form-group">
+                <label for="wallet-address">Wallet Address</label>
+                <input type="text" id="wallet-address" placeholder="Enter your wallet address">
+            </div>
+            
+            <button id="connect-wallet-btn" class="auth-btn">Connect Wallet</button>
+            
+            <div class="alternative-options">
+                <button id="create-wallet-btn" class="secondary-btn">Create New Wallet</button>
+                <button id="import-wallet-btn" class="secondary-btn">Import Existing Wallet</button>
+            </div>
+            
+            <div id="wallet-message" class="message"></div>
+        </div>
+        
+        <div class="user-actions">
+            <button id="logout-btn" class="text-btn">Logout</button>
+        </div>
+    </div>
+
+    <script src="./scripts/wallet.js"></script>
+</body>
+</html>

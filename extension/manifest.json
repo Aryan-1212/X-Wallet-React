@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "My Crypto Wallet",
+  "version": "1.0",
+  "description": "A browser extension wallet.",
+  "permissions": ["storage", "activeTab", "scripting", "management"],
+  "host_permissions": ["*://*/*"],
+  "background": {
+    "service_worker": "scripts/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://your-website.com/*", "http://localhost:3000/*"],
+      "js": ["scripts/content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "login.html"
+  },
+  "externally_connectable": {
+    "matches": ["https://your-website.com/*", "http://localhost:3000/*"]
+  }
+}
